@@ -11,6 +11,16 @@ const app = express ();
 const PORT = process.env.PORT || 3000;
 
 //___________________
+//Controllers
+//___________________
+const BabyController = require('./controllers/BabiesController.js');
+
+//___________________
+// Middleware
+//___________________
+app.use('/babies', BabyController);
+
+//___________________
 //Database
 //___________________
 // How to connect to the database either via heroku or locally
@@ -24,10 +34,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, () => {
 //___________________
 // Routes
 //___________________
-//localhost:3000
-app.get('/' , (req, res) => {
-  res.send('BFC API/backend is running!');
-});
+// Get route
 
 //___________________
 //Listener
