@@ -16,11 +16,6 @@ const PORT = process.env.PORT || 3003;
 //___________________
 const BabyController = require('./controllers/BabiesController.js');
 
-//___________________
-// Middleware
-//___________________
-app.use('/babies', BabyController);
-
 // CORS
 const whitelist = ['http://localhost:3000', 'https://bfc-backend-api.herokuapp.com']
 const corsOptions = {
@@ -33,6 +28,11 @@ const corsOptions = {
     }
 }
 app.use(cors(corsOptions))
+
+//___________________
+// Middleware
+//___________________
+app.use('/babies', BabyController);
 
 //___________________
 //Database
