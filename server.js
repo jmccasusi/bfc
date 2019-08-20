@@ -22,7 +22,7 @@ const BabyController = require('./controllers/BabiesController.js');
 app.use('/babies', BabyController);
 
 // CORS
-const whitelist = ['http://localhost:3003', 'https://bfc-backend-api.herokuapp.com']
+const whitelist = ['http://localhost:3000', 'https://bfc-backend-api.herokuapp.com']
 const corsOptions = {
     origin: (origin, callback) => {
         if (whitelist.indexOf(origin) !== -1) {
