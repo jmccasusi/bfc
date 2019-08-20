@@ -3,6 +3,7 @@
 //___________________
 const express = require('express');
 const mongoose = require ('mongoose');
+const cors = require('cors');
 const app = express ();
 //___________________
 //Port
@@ -19,6 +20,19 @@ const BabyController = require('./controllers/BabiesController.js');
 // Middleware
 //___________________
 app.use('/babies', BabyController);
+
+// CORS
+const whitelist = ['http://localhost:3000', 'https://bfc-backend-api.herokuapp.com']
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
+}
+app.use(cors(corsOptions))
 
 //___________________
 //Database
