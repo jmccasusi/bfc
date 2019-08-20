@@ -28,12 +28,12 @@ babies.get('/random', (req, res) => {
 })
 
 // Seed route
-babies.get('/seed', (req, res) => {
-    Babies.create(BabySeedData, (err, createdBabies) => {
-        console.log('Successfully seeded some data');
-        res.redirect('/babies/all');
-    })
-})
+// babies.get('/seed', (req, res) => {
+//     Babies.create(BabySeedData, (err, createdBabies) => {
+//         console.log('Successfully seeded some data');
+//         res.redirect('/babies/all');
+//     })
+// })
 
 // Get specific baby route
 babies.get('/:id' , (req, res) => {
