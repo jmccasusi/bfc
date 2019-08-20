@@ -32,6 +32,7 @@ app.use(cors(corsOptions))
 //___________________
 // Middleware
 //___________________
+app.use(express.json());
 app.use('/babies', BabyController);
 
 //___________________
