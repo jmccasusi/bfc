@@ -19,7 +19,7 @@ users.post('/', (req, res) => {
     req.body.password,
     bcrypt.genSaltSync(10)
   );
-  user.create(req.body, (err, createdUser) => {
+  User.create(req.body, (err, createdUser) => {
     if (err) {
       res.status(400).json({ error: err.message });
     }
