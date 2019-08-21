@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const users = express.Router();
-const User = require('../models/usersModel');
+const User = require('../models/UsersModel');
 
 // USERS ARRAY
 users.get('/all', (req, res) => {
