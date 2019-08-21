@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/UsersModel');
 const sessions = express.Router();
 
+// NEW SESSION
 sessions.post('/', (req, res) => {
   User.findOne({ username: req.body.username }, (err, foundUser) => {
     if (!foundUser) {
@@ -19,6 +20,7 @@ sessions.post('/', (req, res) => {
   });
 });
 
+// END SESSION
 sessions.delete('/', (req, res) => {
   req.session.destroy((err, currentSession) => {
     if (err) {
