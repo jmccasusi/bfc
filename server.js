@@ -18,36 +18,39 @@ const PORT = process.env.PORT || 3003;
 //Controllers
 //___________________
 const BabyController = require('./controllers/BabiesController.js');
+const usersController = require('./controllers/usersController');
 
 // CORS
-const whitelist = [
-  'http://localhost:3000',
-  'https://bfc-backend-api.herokuapp.com'
-];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-};
-app.use(cors(corsOptions));
+// const whitelist = [
+//   'http://localhost:3000',
+//   'http://localhost:3003',
+//   'https://bfc-backend-api.herokuapp.com'
+// ];
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// };
+// app.use(cors(corsOptions));
 
 //___________________
 // Middleware
 //___________________
-app.use(
-  session({
-    secret: secret,
-    resave: false,
-    saveUninitialized: false
-  })
-);
+// app.use(
+//   session({
+//     secret: secret,
+//     resave: false,
+//     saveUninitialized: false
+//   })
+// );
 
 app.use(express.json());
 app.use('/babies', BabyController);
+app.use('/users', usersController);
 
 //___________________
 //Database
