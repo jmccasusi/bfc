@@ -18,7 +18,8 @@ const PORT = process.env.PORT || 3003;
 //Controllers
 //___________________
 const BabyController = require('./controllers/BabiesController.js');
-const usersController = require('./controllers/UsersController');
+const UsersController = require('./controllers/UsersController');
+const SessionsController = require('./controllers/SessionsController');
 
 // CORS
 // const whitelist = [
@@ -49,9 +50,10 @@ app.use(
 );
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use('/babies', BabyController);
-app.use('/users', usersController);
-
+app.use('/users', UsersController);
+app.use('/sessions', SessionsController);
 //___________________
 //Database
 //___________________
