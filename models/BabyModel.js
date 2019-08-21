@@ -5,7 +5,7 @@ const babySchema = new mongoose.Schema ({
     age: Number,
     weight: String,
     about: String,
-    image: {type: String, default: 'https://loremflickr.com/240/120'},
+    image: {type: String, default: 'https://cdn.dribbble.com/users/6060/screenshots/1538411/1.png'},
     wins: Number,
     losses: Number
   })
