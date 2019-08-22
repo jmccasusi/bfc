@@ -15,16 +15,20 @@ users.get('/all', (req, res) => {
 
 // ENCRYPTING PASSWORD
 users.post('/', (req, res) => {
-  req.body.password = bcrypt.hashSync(
-    req.body.password,
-    bcrypt.genSaltSync(10)
-  );
-  User.create(req.body, (err, createdUser) => {
-    if (err) {
-      res.status(400).json({ error: err.message });
-    }
-    res.status(200).send(createdUser);
-  });
+  if (req.body.password === req.body.reEnterPassword) {
+    req.body.password = bcrypt.hashSync(
+      req.body.password,
+      bcrypt.genSaltSync(10)
+    );
+    User.create(req.body, (err, createdUser) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+      }
+      res.status(200).send(createdUser);
+    });
+  } else {
+    res.send(200).json({ error: 'password does not match' });
+  }
 });
 
 // CREATE
