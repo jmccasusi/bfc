@@ -50,7 +50,7 @@ app.use(
 );
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
 app.use('/babies', BabyController);
 app.use('/users', UsersController);
 app.use('/sessions', SessionsController);
