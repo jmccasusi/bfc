@@ -3,12 +3,12 @@
 //___________________
 //Dependencies
 //___________________
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const session = require('express-session');
-require('dotenv').config();
 const secret = process.env.SECRET;
+const cors = require('cors');
 const app = express();
 //___________________
 //Port
@@ -38,6 +38,7 @@ const corsOptions = {
     }
   }
 };
+app.use(cors());
 
 //___________________
 // Middleware
@@ -55,8 +56,6 @@ app.use(express.json());
 app.use('/babies', BabyController);
 app.use('/users', UsersController);
 app.use('/sessions', SessionsController);
-
-app.use(cors(corsOptions));
 //___________________
 //Database
 //___________________
