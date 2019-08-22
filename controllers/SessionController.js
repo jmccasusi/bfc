@@ -5,13 +5,13 @@ const sessions = express.Router();
 
 // GET SESSION
 sessions.get('/', (req, res) => {
-  if(req.session.currentUser !== null || req.session.currentUser !== ''){
+  if(req.session.cookie.currentUser  !== null || req.session.cookie.currentUser  !== ''){
     res.status(200).send({
-      currentUser: req.session.currentUser
+      currentUser: req.session.cookie.currentUser
     });
   } else {
     res.status(200).send({
-        currentUser: req.session.currentUser
+        currentUser: req.session.cookie.currentUser
       });
   }
 })
@@ -22,9 +22,9 @@ sessions.post('/', (req, res) => {
     if (!foundUser) {
       res.status(200).json({ error: "Incorrect username or password." });
     } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-      req.session.currentUser = foundUser;
+      req.session.cookie.currentUser = foundUser;
       res.status(200).send({
-        currentUser: req.session.currentUser
+        currentUser: foundUser
       });
     } else {
       res.status(400).json({ error: err.message });
