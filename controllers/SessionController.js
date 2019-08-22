@@ -13,10 +13,10 @@ sessions.post('/', (req, res) => {
     } else {
       res.send('cannot sign in');
     }
-    if (err) {
-      res.status(200).json({ error: err.message });
-    }
-    res.status(200).send(foundUser);
+    // if (err) {
+    //   res.status(400).json({ error: err.message });
+    // }
+    // res.status(200).send(foundUser);
   });
 });
 
