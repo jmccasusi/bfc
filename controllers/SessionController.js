@@ -7,7 +7,7 @@ const sessions = express.Router();
 sessions.post('/', (req, res) => {
   User.findOne({ username: req.body.username }, (err, foundUser) => {
     if (!foundUser) {
-      res.status(200).json({ error: "credentialsERR" });
+      res.status(200).json({ error: "Incorrect username or password." });
     } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
       res.status(200).json(foundUser);
     } else {
