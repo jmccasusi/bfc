@@ -47,6 +47,9 @@ babies.get('/:id' , (req, res) => {
 
 // Post route
 babies.post('/new', (req, res) => {
+    if(req.body.image === '' || req.body.image === null){
+        req.body.image = "https://cdn.dribbble.com/users/6060/screenshots/1538411/1.png";
+    }
     Babies.create(req.body, (err, newBaby) => {
         if(err) {
             res.status(400).json({error: err.message})

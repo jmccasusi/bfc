@@ -2,9 +2,12 @@
 //Dependencies
 //___________________
 const express = require('express');
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 const cors = require('cors');
-const app = express ();
+const session = require('express-session');
+require('dotenv').config();
+const secret = process.env.SECRET;
+const app = express();
 //___________________
 //Port
 //___________________
@@ -18,36 +21,56 @@ const PORT = process.env.PORT || 3003;
 //Controllers
 //___________________
 const BabyController = require('./controllers/BabiesController.js');
+const UsersController = require('./controllers/UsersController');
+const SessionsController = require('./controllers/SessionsController');
 
-// CORS
-const whitelist = ['http://localhost:3000', 'https://bfc-backend-api.herokuapp.com']
+CORS
+const whitelist = [
+  'http://localhost:3000',
+  'http://localhost:3003',
+  'https://bfc-backend-api.herokuapp.com'
+];
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
     }
-}
-app.use(cors(corsOptions))
+  }
+};
+app.use(cors(corsOptions));
 
 //___________________
 // Middleware
 //___________________
+app.use(
+  session({
+    secret: secret,
+    resave: false,
+    saveUninitialized: false
+  })
+);
+
 app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
 app.use('/babies', BabyController);
+<<<<<<< HEAD
 >>>>>>> e137b5d45f4351b5f2f7ca68df41818115db1423
 
+=======
+app.use('/users', UsersController);
+app.use('/sessions', SessionsController);
+>>>>>>> 604c93cd667693cbc0c7dffa29ed41e2573fdef7
 //___________________
 //Database
 //___________________
 // How to connect to the database either via heroku or locally
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/DB_NAME'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/DB_NAME';
 
 // Connect to Mongo
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, () => {
-	console.log('connected to mongo database')
+  console.log('connected to mongo database');
 });
 
 //___________________
