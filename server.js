@@ -21,22 +21,22 @@ const BabyController = require('./controllers/BabiesController.js');
 const UsersController = require('./controllers/UsersController');
 const SessionsController = require('./controllers/SessionsController');
 
-// CORS
-// const whitelist = [
-//   'http://localhost:3000',
-//   'http://localhost:3003',
-//   'https://bfc-backend-api.herokuapp.com'
-// ];
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   }
-// };
-// app.use(cors(corsOptions));
+CORS
+const whitelist = [
+  'http://localhost:3000',
+  'http://localhost:3003',
+  'https://bfc-backend-api.herokuapp.com'
+];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+app.use(cors(corsOptions));
 
 //___________________
 // Middleware
