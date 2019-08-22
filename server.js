@@ -5,8 +5,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
-// require('dotenv').config();
-// const secret = process.env.SECRET;
+require('dotenv').config();
+const secret = process.env.SECRET;
 const app = express();
 //___________________
 //Port
@@ -24,6 +24,7 @@ const SessionsController = require('./controllers/SessionsController');
 // CORS
 const whitelist = [
   'http://localhost:3000',
+  'http://localhost:3003',
   'https://bfc-backend-api.herokuapp.com'
 ];
 const corsOptions = {
@@ -40,13 +41,13 @@ app.use(cors(corsOptions));
 //___________________
 // Middleware
 //___________________
-// app.use(
-//   session({
-//     secret: secret,
-//     resave: false,
-//     saveUninitialized: false
-//   })
-// );
+app.use(
+  session({
+    secret: secret,
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
