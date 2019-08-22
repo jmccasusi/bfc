@@ -5,9 +5,9 @@ const sessions = express.Router();
 
 // GET SESSION
 sessions.get('/', (req, res) => {
-  if(req.cookie.currentUser !== null || rreq.cookie.currentUser !== {}){
+  if(req.signedCookies.currentUser !== null || req.signedCookies.currentUser !== {}){
     res.status(200).send({
-      currentUser: req.cookie.currentUser
+      currentUser: req.signedCookies.currentUser
     });
   } else {
     res.status(200).send({
@@ -25,7 +25,7 @@ sessions.post('/', (req, res) => {
       // req.session.currentUser = foundUser;
       res.cookie('currentUser', foundUser, { signed: true, httpOnly: true });
       res.status(200).send({
-        currentUser: res.cookie.currentUser
+        currentUser: foundUser
       });
     } else {
       res.status(400).json({ error: err.message });
