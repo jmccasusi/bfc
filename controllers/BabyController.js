@@ -13,7 +13,10 @@ babies.get('/all', (req, res) => {
     if (err) {
       res.status(400).json({ error: err.message });
     }
-    res.status(200).send(foundBabies);
+    res.status(200).send({
+        foundBabies: foundBabies,
+        currentUser: req.session.currentUser
+    });
   });
 });
 
@@ -25,7 +28,10 @@ babies.get('/random', (req, res) => {
     }
     res
       .status(200)
-      .send(foundBabies[Math.floor(Math.random() * foundBabies.length)]);
+      .send({
+          foundBabies: foundBabies[Math.floor(Math.random() * foundBabies.length)],
+          currentUser: req.session.currentUser
+        });
   });
 });
 
@@ -43,7 +49,10 @@ babies.get('/:id', (req, res) => {
     if (err) {
       res.status(400).json({ error: err.message });
     }
-    res.status(200).send(foundBaby);
+    res.status(200).send({
+        foundBaby: foundBaby,
+        currentUser: req.session.currentUser
+    });
   });
 });
 
@@ -59,7 +68,10 @@ babies.post('/new', (req, res) => {
     if (err) {
       res.status(400).json({ error: err.message });
     }
-    res.status(200).send(newBaby);
+    res.status(200).send({
+        newBaby: newBaby,
+        currentUser: req.session.currentUser
+    });
   });
 });
 
@@ -69,7 +81,10 @@ babies.delete('/:id', (req, res) => {
     if (err) {
       res.status(400).json({ error: err.message });
     }
-    res.status(200).json(deletedBaby);
+    res.status(200).json({
+        deletedBaby: deletedBaby,
+        currentUser: req.session.currentUser
+    });
   });
 });
 
@@ -79,7 +94,10 @@ babies.put('/:id', (req, res) => {
     if (err) {
       res.status(400).json({ error: err.message });
     }
-    res.status(200).send(updatedBaby);
+    res.status(200).send({
+        updatedBaby: updatedBaby,
+        currentUser: req.session.currentUser
+    });
   });
 });
 

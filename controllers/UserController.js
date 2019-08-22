@@ -9,7 +9,10 @@ users.get('/all', (req, res) => {
     if (err) {
       res.status(400).json({ error: err.message });
     }
-    res.status(200).send(foundUsers);
+    res.status(200).send({
+        foundUsers: foundUsers,
+        currentUser: req.session.currentUser
+    });
   });
 });
 
@@ -27,7 +30,7 @@ users.post('/', (req, res) => {
       res.status(200).send(createdUser);
     });
   } else {
-    res.send(200).json({ error: 'password does not match' });
+    res.send(200).json({ error: 'Password does not match' });
   }
 });
 

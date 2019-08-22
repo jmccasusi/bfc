@@ -10,7 +10,9 @@ sessions.post('/', (req, res) => {
       res.status(200).json({ error: "Incorrect username or password." });
     } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
       req.session.currentUser = foundUser;
-      res.status(200).send(foundUser);
+      res.status(200).send({
+        currentUser: req.session.currentUser
+      });
     } else {
       res.status(400).json({ error: err.message });
     }
