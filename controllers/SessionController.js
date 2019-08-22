@@ -11,7 +11,7 @@ sessions.get('/', (req, res) => {
     });
   } else {
     res.status(200).send({
-      currentUser: ''
+      currentUser: {}
     });
   }
 })
