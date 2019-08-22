@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const babySchema = new mongoose.Schema({
   name: { type: String, required: true },
-  age: { type: Number, max: 24 },
+  age: { type: Number, min: 0, max: 23 },
   weight: String,
   about: String,
   image: {
