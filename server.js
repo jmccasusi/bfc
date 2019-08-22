@@ -45,7 +45,6 @@ app.use(cors());
 //___________________
 // Middleware
 //___________________
-app.use(cookieParser());
 app.use(
   session({
     secret: secret,
