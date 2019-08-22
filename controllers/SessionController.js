@@ -3,6 +3,19 @@ const bcrypt = require('bcrypt');
 const User = require('../models/UserModel');
 const sessions = express.Router();
 
+// GET SESSION
+sessions.get('/', (req, res) => {
+  if(req.session.currentUser !== null || req.session.currentUser !== ''){
+    res.status(200).send({
+      currentUser: req.session.currentUser
+    });
+  } else {
+    res.status(200).send({
+      currentUser: ''
+    });
+  }
+})
+
 // NEW SESSION
 sessions.post('/', (req, res) => {
   User.findOne({ username: req.body.username }, (err, foundUser) => {
