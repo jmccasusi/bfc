@@ -5,9 +5,9 @@ const sessions = express.Router();
 
 // GET SESSION
 sessions.get('/', (req, res) => {
-  if(req.session.currentUser !== null || req.session.currentUser !== ''){
+  if(req.cookie.currentUser !== null || rreq.cookie.currentUser !== {}){
     res.status(200).send({
-      currentUser: req.session.currentUser
+      currentUser: req.cookie.currentUser
     });
   } else {
     res.status(200).send({
@@ -22,9 +22,10 @@ sessions.post('/', (req, res) => {
     if (!foundUser) {
       res.status(200).json({ error: "Incorrect username or password." });
     } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-      req.session.currentUser = foundUser;
+      // req.session.currentUser = foundUser;
+      res.cookie('currentUser', foundUser, { signed: true, httpOnly: true });
       res.status(200).send({
-        currentUser: req.session.currentUser
+        currentUser: res.cookie.currentUser
       });
     } else {
       res.status(400).json({ error: err.message });
