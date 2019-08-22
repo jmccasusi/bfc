@@ -1,7 +1,9 @@
+// UsersController
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const users = express.Router();
-const User = require('../models/UsersModel');
+const User = require('../models/UserModel');
 
 // USERS ARRAY
 users.get('/all', (req, res) => {
