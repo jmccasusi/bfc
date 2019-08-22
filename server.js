@@ -36,7 +36,6 @@ const corsOptions = {
     }
   }
 };
-app.use(cors(corsOptions));
 
 //___________________
 // Middleware
@@ -48,6 +47,7 @@ app.use(
     saveUninitialized: false
   })
 );
+app.use(cors(corsOptions));
 
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
