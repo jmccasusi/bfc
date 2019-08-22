@@ -7,6 +7,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const secret = process.env.SECRET;
 const cors = require('cors');
 const app = express();
@@ -16,6 +17,18 @@ const app = express();
 // Allow use of Heroku's port or your own local port, depending on the environment
 
 const PORT = process.env.PORT || 3003;
+
+//___________________
+//Database
+//___________________
+// How to connect to the database either via heroku or locally
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/DB_NAME';
+
+// Connect to Mongo
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, () => {
+  console.log('connected to mongo database');
+});
+mongoose.Promise = global.Promise;
 
 //___________________
 //Controllers
@@ -44,29 +57,23 @@ app.use(cors());
 //___________________
 // Middleware
 //___________________
+// app.use(cookieParser());
 app.use(
   session({
     secret: secret,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
+
 
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 app.use('/babies', BabyController);
 app.use('/users', UsersController);
 app.use('/sessions', SessionsController);
-//___________________
-//Database
-//___________________
-// How to connect to the database either via heroku or locally
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/DB_NAME';
 
-// Connect to Mongo
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, () => {
-  console.log('connected to mongo database');
-});
 
 //___________________
 // Routes
