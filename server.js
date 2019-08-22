@@ -19,9 +19,9 @@ const PORT = process.env.PORT || 3003;
 //___________________
 //Controllers
 //___________________
-const BabyController = require('./controllers/BabiesController.js');
-const UsersController = require('./controllers/UsersController');
-const SessionsController = require('./controllers/SessionsController');
+const BabyController = require('./controllers/BabyController');
+const UsersController = require('./controllers/UserController');
+const SessionsController = require('./controllers/SessionController');
 
 // CORS
 const whitelist = [
@@ -38,7 +38,6 @@ const corsOptions = {
     }
   }
 };
-app.use(cors(corsOptions));
 
 //___________________
 // Middleware
@@ -56,6 +55,8 @@ app.use(express.json());
 app.use('/babies', BabyController);
 app.use('/users', UsersController);
 app.use('/sessions', SessionsController);
+
+app.use(cors(corsOptions));
 //___________________
 //Database
 //___________________
