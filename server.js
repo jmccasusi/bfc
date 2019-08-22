@@ -8,7 +8,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const cookieParser = require('cookie-parser');
 const secret = process.env.SECRET;
 const cors = require('cors');
 const app = express();
@@ -54,7 +53,7 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
-app.use(cookieParser('secret'));
+
 
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
