@@ -5,8 +5,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
-require('dotenv').config();
-const secret = process.env.SECRET;
+// require('dotenv').config();
+// const secret = process.env.SECRET;
 const app = express();
 //___________________
 //Port
@@ -40,13 +40,13 @@ app.use(cors(corsOptions));
 //___________________
 // Middleware
 //___________________
-app.use(
-  session({
-    secret: secret,
-    resave: false,
-    saveUninitialized: false
-  })
-);
+// app.use(
+//   session({
+//     secret: secret,
+//     resave: false,
+//     saveUninitialized: false
+//   })
+// );
 
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
