@@ -21,7 +21,7 @@ const BabyController = require('./controllers/BabiesController.js');
 const UsersController = require('./controllers/UsersController');
 const SessionsController = require('./controllers/SessionsController');
 
-CORS
+// CORS
 const whitelist = [
   'http://localhost:3000',
   'http://localhost:3003',
