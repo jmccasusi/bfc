@@ -9,6 +9,7 @@ sessions.post('/', (req, res) => {
     if (!foundUser) {
       res.status(400).json({ error: err.message });
     } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
+      req.session.currentUser = foundUser;
       res.status(200).send(foundUser);
     } else {
       res.status(400).json({ error: err.message });
