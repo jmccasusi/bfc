@@ -3,12 +3,41 @@
 //___________________
 const express = require('express');
 const mongoose = require ('mongoose');
+const cors = require('cors');
 const app = express ();
 //___________________
 //Port
 //___________________
 // Allow use of Heroku's port or your own local port, depending on the environment
+<<<<<<< HEAD
 const PORT = process.env.PORT || 3000
+=======
+const PORT = process.env.PORT || 3003;
+
+//___________________
+//Controllers
+//___________________
+const BabyController = require('./controllers/BabiesController.js');
+
+// CORS
+const whitelist = ['http://localhost:3000', 'https://bfc-backend-api.herokuapp.com']
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
+}
+app.use(cors(corsOptions))
+
+//___________________
+// Middleware
+//___________________
+app.use(express.json());
+app.use('/babies', BabyController);
+>>>>>>> e137b5d45f4351b5f2f7ca68df41818115db1423
 
 //___________________
 //Database
@@ -24,10 +53,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, () => {
 //___________________
 // Routes
 //___________________
-//localhost:3000
-app.get('/' , (req, res) => {
-  res.send('BFC API/backend is running!');
-});
+// Get route
 
 //___________________
 //Listener
