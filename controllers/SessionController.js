@@ -9,7 +9,7 @@ sessions.post('/', (req, res) => {
     if (!foundUser) {
       res.status(400).json({ error: err.message });
     } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-      res.status(200).send(foundUser);
+      res.status(200).json(foundUser);
     } else {
       res.status(400).json({ error: err.message });
     }
@@ -26,7 +26,7 @@ sessions.delete('/', (req, res) => {
     if (err) {
       res.status(200).json({ error: err.message });
     }
-    res.status(200).send(currentSession);
+    res.status(200).json(currentSession);
   });
 });
 
