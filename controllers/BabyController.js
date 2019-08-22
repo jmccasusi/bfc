@@ -58,8 +58,8 @@ babies.get('/:id', (req, res) => {
 
 // Post route
 babies.post('/new', (req, res) => {
-  const userId = req.session.currentUser._id;
-  req.body.userId = userId;
+//   const userId = req.session.currentUser._id;
+//   req.body.userId = userId;
   if (req.body.image === '' || req.body.image === null) {
     req.body.image =
       'https://cdn.dribbble.com/users/6060/screenshots/1538411/1.png';
