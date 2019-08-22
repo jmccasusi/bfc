@@ -14,6 +14,9 @@ const app = express();
 //Port
 //___________________
 // Allow use of Heroku's port or your own local port, depending on the environment
+<<<<<<< HEAD
+const PORT = process.env.PORT || 3000
+=======
 const PORT = process.env.PORT || 3003;
 
 //___________________
@@ -54,8 +57,13 @@ app.use(
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 app.use('/babies', BabyController);
+<<<<<<< HEAD
+>>>>>>> e137b5d45f4351b5f2f7ca68df41818115db1423
+
+=======
 app.use('/users', UsersController);
 app.use('/sessions', SessionsController);
+>>>>>>> 604c93cd667693cbc0c7dffa29ed41e2573fdef7
 //___________________
 //Database
 //___________________
