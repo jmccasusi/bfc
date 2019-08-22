@@ -7,16 +7,16 @@ const sessions = express.Router();
 sessions.post('/', (req, res) => {
   User.findOne({ username: req.body.username }, (err, foundUser) => {
     if (!foundUser) {
-      res.send('cannot find user');
+      res.status(400).json({ error: err.message });
     } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-      res.send('signed in');
+      res.status(200).send(foundUser);
     } else {
-      res.send('cannot sign in');
+      res.status(400).json({ error: err.message });
     }
-    if (err) {
-      res.status(200).json({ error: err.message });
-    }
-    res.status(200).send(foundUser);
+    // if (err) {
+    //   res.status(400).json({ error: err.message });
+    // }
+    // res.status(200).send(foundUser);
   });
 });
 
