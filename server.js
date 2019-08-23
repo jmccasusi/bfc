@@ -28,7 +28,7 @@ const SessionsController = require('./controllers/SessionController');
 // CORS
 const whitelist = [
   'http://localhost:3000',
-  'http://localhost:3003',
+  'http://localhost:3003'
   'https://bfc-backend-api.herokuapp.com'
 ];
 const corsOptions = {
@@ -54,7 +54,6 @@ app.use(
   })
 );
 
-
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 app.use('/babies', BabyController);
@@ -72,7 +71,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, () => {
   console.log('connected to mongo database');
 });
 mongoose.Promise = global.Promise;
-
 
 //___________________
 // Routes
