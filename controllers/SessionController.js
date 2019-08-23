@@ -4,17 +4,17 @@ const User = require('../models/UserModel');
 const sessions = express.Router();
 
 // GET SESSION
-sessions.get('/', (req, res) => {
-  if(req.session.cookie.currentUser  !== null || req.session.cookie.currentUser  !== ''){
-    res.status(200).send({
-      currentUser: req.session.cookie.currentUser
-    });
-  } else {
-    res.status(200).send({
-        currentUser: req.session.cookie.currentUser
-      });
-  }
-})
+// sessions.get('/', (req, res) => {
+//   if(req.session.currentUser !== null || req.session.currentUser !== ''){
+//     res.status(200).send({
+//       currentUser: req.session.currentUser
+//     });
+//   } else {
+//     res.status(200).send({
+//         currentUser: req.session.currentUser
+//       });
+//   }
+// })
 
 // NEW SESSION
 sessions.post('/', (req, res) => {
@@ -22,9 +22,9 @@ sessions.post('/', (req, res) => {
     if (!foundUser) {
       res.status(200).json({ error: "Incorrect username or password." });
     } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-      req.session.cookie.currentUser = foundUser;
+      req.session.currentUser = foundUser;
       res.status(200).send({
-        currentUser: foundUser
+        currentUser: req.session.currentUser
       });
     } else {
       res.status(400).json({ error: err.message });
