@@ -28,7 +28,7 @@ const SessionsController = require('./controllers/SessionController');
 // CORS
 const whitelist = [
   'http://localhost:3000',
-  'http://localhost:3003'
+  'http://localhost:3003',
   'https://bfc-backend-api.herokuapp.com'
 ];
 const corsOptions = {
