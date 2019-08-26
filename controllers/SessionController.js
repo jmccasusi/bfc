@@ -27,7 +27,7 @@ sessions.post('/', (req, res) => {
         currentUser: req.session.currentUser
       });
     } else {
-      res.status(400).json({ error: err.message });
+      res.status(200).json({ error: err.message });
     }
     // if (err) {
     //   res.status(400).json({ error: err.message });
