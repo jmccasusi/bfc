@@ -95,7 +95,20 @@ babies.put('/:id', (req, res) => {
       res.status(400).json({ error: err.message });
     }
     res.status(200).send({
-        updatedBaby: updatedBaby,
+        updatedBabies: updatedBaby,
+        currentUser: req.session.currentUser
+    });
+  });
+});
+
+// Rest scores
+babies.get('/reset/scores', (req, res) => {
+  Babies.updateMany({}, {wins: 0, losses: 0}, (err, updatedBabies) => {
+    if (err) {
+      res.status(200).send({ error: err.message });
+    }
+    res.status(200).send({
+      updatedBabies: updatedBabies,
         currentUser: req.session.currentUser
     });
   });
