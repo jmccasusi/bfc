@@ -7,9 +7,9 @@ const User = require('../models/UserModel');
 users.get('/all', (req, res) => {
   User.find({}, (err, foundUsers) => {
     if (err) {
-      res.status(400).json({ error: err.message });
+      res.status(200).json({ error: err.message });
     }
-    res.status(200).send({
+    res.status(200).json({
         foundUsers: foundUsers,
         currentUser: req.session.currentUser
     });
@@ -25,9 +25,9 @@ users.post('/', (req, res) => {
     );
     User.create(req.body, (err, createdUser) => {
       if (err) {
-        res.status(400).json({ error: err.message });
+        res.status(200).json({ error: err.message });
       }
-      res.status(200).send(createdUser);
+      res.status(200).json(createdUser);
     });
   } else {
     res.send(200).json({ error: 'Password does not match' });
@@ -38,16 +38,16 @@ users.post('/', (req, res) => {
 users.post('/', (req, res) => {
   User.create(req.body, (err, newUser) => {
     if (err) {
-      res.status(400).json({ error: err.message });
+      res.status(200).json({ error: err.message });
     }
-    res.status(200).send(newUser);
+    res.status(200).json(newUser);
   });
 });
 
 users.delete('/:id', (req, res) => {
   User.findByIdAndRemove(req.params.id, (err, deletedUser) => {
     if (err) {
-      res.status(400).json({ error: err.message });
+      res.status(200).json({ error: err.message });
     }
     res.status(200).json(deletedUser);
   });
