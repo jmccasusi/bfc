@@ -26,11 +26,14 @@ Backend server for the RUMBLE App
 - MongoDB
 
 ## Deployed App/ Frontend Link
-- [Link to live client](https://www.google.com/)
+- [http://squealing-flavor.surge.sh/](http://squealing-flavor.surge.sh/)
 - [Github Link](https://github.com/rubyszk/bfc/)
 
 ## Future Improvements
-- 
+- Enable CORS whitelist options
+- Route for searching baby entries by name, weight class, or by wins and losses
+- Error handling
+- Patches to fix occasional server crashing
 
 ## Team Members/Contributors
 - Ruby King
