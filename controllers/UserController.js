@@ -30,7 +30,7 @@ users.post('/', (req, res) => {
       res.status(200).json(createdUser);
     });
   } else {
-    res.send(200).json({ error: 'Password does not match' });
+    res.status(200).json({ error: 'Password does not match' });
   }
 });
 
