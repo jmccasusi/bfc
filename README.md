@@ -2,7 +2,7 @@
 
 Backend server for the RUMBLE App
 
-[Link to live client](https://bfc-backend-api.herokuapp.com/)
+API Link: [https://bfc-backend-api.herokuapp.com/](https://bfc-backend-api.herokuapp.com/)
 
 ![screenshot of app](screenshot-01.png 'Screenshot 1')
 
@@ -24,6 +24,7 @@ Backend server for the RUMBLE App
 - Node.js
 - expressJS
 - MongoDB
+- bcrypt
 
 ## Deployed App/ Frontend Link
 - [http://squealing-flavor.surge.sh/](http://squealing-flavor.surge.sh/)
